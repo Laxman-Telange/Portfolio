@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+            margin: 0;
+        }
+
+        .quiz-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+        }
+
+        .options button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container" id="quiz-container">
+        <h2 id="question">Loading...</h2>
+        <div class="options">
+            <button onclick="checkAnswer(0)"></button>
+            <button onclick="checkAnswer(1)"></button>
+            <button onclick="checkAnswer(2)"></button>
+            <button onclick="checkAnswer(3)"></button>
+        </div>
+        <p id="result"></p>
+    </div>
+    <script>
+        const quizData = [
+            {
+                question: "What is the capital of France?",
+                options: ["Berlin", "Madrid", "Paris", "Lisbon"],
+                answer: 2
+            },
+            {
+                question: "Which is the largest planet?",
+                options: ["Earth", "Mars", "Jupiter", "Saturn"],
+                answer: 2
+            }
+        ];
+        let currentQuestion = 0;
+
+        function loadQuestion() {
+            const questionEl = document.getElementById("question");
+            const buttons = document.querySelectorAll(".options button");
+            questionEl.innerText = quizData[currentQuestion].question;
+            buttons.forEach((btn, index) => {
+                btn.innerText = quizData[currentQuestion].options[index];
+            });
+        }
+
+        function checkAnswer(selected) {
+            const resultEl = document.getElementById("result");
+            if (selected === quizData[currentQuestion].answer) {
+                resultEl.innerText = "Correct!";
+                resultEl.style.color = "green";
+            } else {
+                resultEl.innerText = "Wrong!";
+                resultEl.style.color = "red";
+            }
+
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < quizData.length) {
+                    resultEl.innerText = "";
+                    loadQuestion();
+                } else {
+                    currentQuestion = 0;
+                    resultEl.innerText = "";
+                    loadQuestion();
+                }
+            }, 1000);
+        }
+
+        loadQuestion();
+    </script>
+</body>
+
+</html>

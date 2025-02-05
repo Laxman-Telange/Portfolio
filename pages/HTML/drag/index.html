@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop File Uploader</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .drop-zone {
+            border: 2px dashed #3498db;
+            padding: 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .drop-zone:hover {
+            background-color: #eaf7ff;
+        }
+
+        #uploaded-files {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #uploaded-files li {
+            background-color: #f1f1f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .file-info {
+            color: #333;
+        }
+
+        .remove-btn {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .remove-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .upload-btn {
+            margin-top: 20px;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .upload-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Drag and Drop File Uploader</h1>
+        <div id="drop-zone" class="drop-zone">
+            <p>Drag and drop files here, or click to select files</p>
+            <input type="file" id="file-input" multiple hidden>
+        </div>
+        <div id="file-list" class="file-list">
+            <ul id="uploaded-files"></ul>
+        </div>
+        <button id="upload-btn" class="upload-btn">Upload Files</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+<script>
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const uploadedFilesList = document.getElementById('uploaded-files');
+    const uploadBtn = document.getElementById('upload-btn');
+
+    // Store files to upload
+    let filesToUpload = [];
+
+    // Trigger file input click when drop zone is clicked
+    dropZone.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    // Handle drag over to highlight drop zone
+    dropZone.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        dropZone.style.backgroundColor = '#eaf7ff';
+    });
+
+    // Handle drag leave to remove highlight
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.style.backgroundColor = '';
+    });
+
+    // Handle file drop event
+    dropZone.addEventListener('drop', (event) => {
+        event.preventDefault();
+        dropZone.style.backgroundColor = '';
+        const files = event.dataTransfer.files;
+        handleFiles(files);
+    });
+
+    // Handle file selection through file input
+    fileInput.addEventListener('change', (event) => {
+        const files = event.target.files;
+        handleFiles(files);
+    });
+
+    // Handle file uploading logic
+    function handleFiles(files) {
+        const fileArray = Array.from(files);
+        fileArray.forEach((file) => {
+            filesToUpload.push(file);
+            const listItem = document.createElement('li');
+            listItem.classList.add('file-item');
+
+            const fileName = document.createElement('span');
+            fileName.classList.add('file-info');
+            fileName.textContent = file.name;
+
+            const removeButton = document.createElement('button');
+            removeButton.classList.add('remove-btn');
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = () => {
+                listItem.remove();
+                filesToUpload = filesToUpload.filter(f => f.name !== file.name);
+            };
+
+            listItem.appendChild(fileName);
+            listItem.appendChild(removeButton);
+            uploadedFilesList.appendChild(listItem);
+        });
+    }
+
+    // Upload the files when the "Upload Files" button is clicked
+    uploadBtn.addEventListener('click', () => {
+        if (filesToUpload.length > 0) {
+            const formData = new FormData();
+
+            // Append each file to FormData
+            filesToUpload.forEach(file => {
+                formData.append('files[]', file);
+            });
+
+            // Send the files to the server (replace 'your-server-endpoint' with your server URL)
+            fetch('your-server-endpoint', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('Files uploaded successfully!');
+                    filesToUpload = []; // Clear the uploaded files array
+                    uploadedFilesList.innerHTML = ''; // Clear the file list
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Error uploading files.');
+                });
+        } else {
+            alert('Please add some files to upload.');
+        }
+    });
+
+
+</script>
+</body>
+
+</html>

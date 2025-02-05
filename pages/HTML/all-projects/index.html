@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        .portfolio .container {
+            padding-bottom: 40px;
+        }
+
+        .portfolio .portfolio-heading {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .portfolio .portfolio-heading h2 {
+            color: var(--text-black-900);
+            font-weight: 500;
+        }
+
+        .portfolio .portfolio-item {
+            flex: 0 0 25%;
+            max-width: 100%;
+            padding-bottom: 70px;
+            margin: auto;
+        }
+
+        .portfolio .portfolio-item a {
+            text-decoration: none;
+            display: block;
+        }
+
+        .portfolio .portfolio-item {
+            flex: 0 0 25%;
+            max-width: 100%;
+            padding-bottom: 70px;
+            margin: auto;
+
+        }
+
+        .portfolio .portfolio-item-inner {
+            border: 6px solid var(--bg-black-100);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.7s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.9);
+
+            /* Box Shadow Added */
+        }
+
+        .portfolio .portfolio-item-inner:hover {
+            transform: scale(1.09);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            /* Stronger Shadow on Hover */
+        }
+
+
+        .portfolio .portfolio-item-inner .portfolio-img img {
+            width: 100%;
+            height: 200px;
+            display: block;
+        }
+
+        .portfolio .portfolio-item-inner h4 {
+            text-align: center;
+            color: var(--text-black-900);
+            padding: 10px 0;
+            font-size: 20px;
+
+        }
+
+        .section {
+            background: var(--bg-black-900);
+            min-height: 100vh;
+            padding: 0 20px;
+
+        }
+
+        .main-content {
+            padding-left: 270px;
+        }
+
+        .pad-15 {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: auto;
+        }
+
+        .section .container {
+            padding-top: 10px;
+            padding-bottom: 50px;
+        }
+
+        .section-title {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 20px;
+
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            color: var(--text-black-900);
+            font-weight: 700;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-title h2::before {
+            content: '';
+            height: 4px;
+            width: 40px;
+            background-color: var(--skin-color);
+            position: absolute;
+            top: 100%;
+            left: 0;
+        }
+
+        .section-title h2::after {
+            content: '';
+            height: 4px;
+            width: 25px;
+            background-color: var(--skin-color);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 8px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="portfolio section" id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="section-title pad-15">
+                    <h2>My Projects</h2>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Weather app Project -->
+                <div class="portfolio-item pad-15"
+                    onclick="window.open('/HTML_PROGRAMS/portfolio/pages/HTML/Calculator/index.html')">
+                    <div class="portfolio-item-inner shadow-dark">
+                        <div class="portfolio-img">
+                            <img src="./calci.jpg" alt="Weather App">
+                        </div>
+                        <h4>Calculator</h4>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- Bar Code Generator Project -->
+                <div class="portfolio-item pad-15"
+                    onclick="window.open('/HTML_PROGRAMS/portfolio/pages/HTML/clock/index.html')">
+                    <div class="portfolio-item-inner shadow-dark">
+                        <div class="portfolio-img">
+                            <img src="./clock.jpg" alt="HTML & CSS Project">
+                        </div>
+                        <h4>Digital Clock</h4>
+                    </div>
+                    </a>
+                </div>
+
+                <!--Quiz App -->
+                <div class="portfolio-item pad-15"
+                    onclick="window.open('/HTML_PROGRAMS/portfolio/pages/HTML/quiz/index.html')">
+                    <div class="portfolio-item-inner shadow-dark">
+                        <div class="portfolio-img">
+                            <img src="quiz.jpg" alt="Quiz App">
+                        </div>
+                        <h4>Quiz App</h4>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- Resume -->
+                <div class="portfolio-item pad-15"
+                    onclick="window.open('/HTML_PROGRAMS/portfolio/pages/HTML/resume/index.html')">
+                    <div class="portfolio-item-inner shadow-dark">
+                        <div class="portfolio-img">
+                            <img src="resume.jpg" alt="Resume">
+                        </div>
+                        <h4>Resume</h4>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- Music Player -->
+                <div class="portfolio-item pad-15"
+                    onclick="window.open('/HTML_PROGRAMS/portfolio/pages/HTML/maxplayer/index.html')">
+                    <div class="portfolio-item-inner shadow-dark">
+                        <div class="portfolio-img">
+                            <img src="music.jpg" alt="StopWatch">
+                        </div>
+                        <h4>Music Player</h4>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- Drag and Drop  -->
+                <div class="portfolio-item pad-15"
+                    onclick="window.open('/HTML_PROGRAMS/portfolio/pages/HTML/drag/index.html')">
+                    <div class="portfolio-item-inner shadow-dark">
+                        <div class="portfolio-img">
+                            <img src="upload.jpg" alt="drag and drop">
+                        </div>
+                        <h4>Drag & Drop File</h4>
+                    </div>
+                    </a>
+                </div>
+                <!-- Job Portal -->
+                <div class="portfolio-item pad-15"
+                    onclick="window.open('/HTML_PROGRAMS/portfolio/pages/HTML/jobportal/index.html')">
+                    <div class="portfolio-item-inner shadow-dark">
+                        <div class="portfolio-img">
+                            <img src="jobs.jpg" alt="To do">
+                        </div>
+                        <h4>Job Portal</h4>
+                    </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

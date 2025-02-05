@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form QR Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: #f4f4f4;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Form QR Code Generator</h1>
+    <div class="container">
+        <input type="text" id="name" placeholder="Enter your name">
+        <input type="email" id="email" placeholder="Enter your email">
+        <input type="tel" id="phone" placeholder="Enter your phone number">
+        <button onclick="generateFormQRCode()">Generate QR Code</button>
+        <canvas id="qrcodeCanvas"></canvas>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script>
+        function generateFormQRCode() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (name === '' || email === '' || phone === '') {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            const qrData = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}`;
+            const qrCodeCanvas = document.getElementById('qrcodeCanvas');
+
+            const qr = new QRious({
+                element: qrCodeCanvas,
+                value: qrData,
+                size: 250,
+                level: 'H'
+            });
+        }
+    </script>
+</body>
+
+</html>
