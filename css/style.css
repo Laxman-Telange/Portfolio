@@ -758,9 +758,10 @@ h3.my-profession{
         flex: 0 0 100%;
         max-width: 100%;
     }
-    .form-group.btn {
+    .form-item .form-group .btn {
         display: flex;
         justify-content: center;
+        align-items:center;
     }
 }
 }
