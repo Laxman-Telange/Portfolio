@@ -759,3 +759,9 @@ h3.my-profession{
         max-width: 100%;
     }
 }
+@media (max-width:800px){
+   .form-item, .form-group .btn {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
