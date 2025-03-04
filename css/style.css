@@ -715,7 +715,7 @@ h3.my-profession{
 
 
 
-@media (max-width:1200px) 
+/* @media (max-width:1200px) 
 {
     .aside{
         left: -270px;
@@ -760,9 +760,19 @@ h3.my-profession{
     }
     
 }
-.form-item .form-group .btn {
-        display: flex;
-        justify-content: center;
-        align-items:center;
+
+ */
+
+@media (max-width: 768px) {
+    .contact .row {
+        flex-direction: column;
     }
 
+    .contact-info-item {
+        width: 100%;
+    }
+
+    .contact-form .form-item {
+        width: 100%;
+    }
+}
