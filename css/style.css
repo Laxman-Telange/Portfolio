@@ -729,7 +729,7 @@ h3.my-profession{
     }
 }
 @media (max-width:800px){
-    .contact .contact-info-item,
+    .contact .contact-info-item,.form-item, .form-group .btn 
     .portfolio .portfolio-item,
     .service .service-item{
         flex:0 0 50%;
