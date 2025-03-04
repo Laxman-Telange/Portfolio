@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"
+        integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- style -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Popins';
+            box-sizing: border-box;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 300px;
+            background: linear-gradient(135deg, #00feba, #5b548a);
+            color: #fff;
+            margin: 70px auto 0;
+            border-radius: 20px;
+            padding: 40px 35px;
+            text-align: center;
+            height: 70vh;
+
+        }
+
+        .search {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search input {
+            text-align: center;
+            border: 0;
+            outline: 0;
+            background: #ebfffc;
+            color: #555;
+            padding: 10px 25px;
+            height: 30px;
+            border-radius: 30px;
+            flex: 1;
+            margin-right: 16px;
+
+        }
+
+        .weather img {
+
+            width: 70px;
+            height: 70px;
+            margin-top: 20px;
+        }
+
+        .location {
+            display: flex;
+            justify-content: center;
+            font-size: 30px;
+            color: black;
+
+        }
+
+        #date {
+            margin-top: 10px;
+        }
+
+        .search button {
+            border: 0;
+            outline: 0;
+            background: #ebfffc;
+            width: 80px;
+            height: 30px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+
+        }
+
+        .search button img {
+            width: 20px;
+
+        }
+    </style>
+    <title>Weather App</title>
+</head>
+
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="enter city name">
+            <!-- <i class="fa-solid fa-magnifying-glass" style="color: #0c0d0e;"></i> -->
+            <button>
+                <img src="assets/search-image.png" alt="">
+            </button>
+        </div>
+        <div class="weather">
+            <img src="assets/clouds.png" alt="" class="weather-icon">
+            <h1 class="temp">20°c</h1>
+            <h2 class="city">Pune</h2>
+            <p id="date">Wed |Nov 23 |10.30AM</p>
+        </div>
+    </div>
+    <script>
+        const apiKey = "c1f6688c8a095d000f32243e8ba0a7e5";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+        const searchBox = document.querySelector(".search input");
+        const searchBtn = document.querySelector(".search button img");
+        const weathericon = document.querySelector(".weather-icon");
+        const curDate = document.getElementById("date");
+
+
+        async function checkWeather(city) {
+            const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+            var data = await response.json();
+            console.log(data);
+            document.querySelector(".city").innerHTML = data.name;
+            document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+
+            if (data.weather[0].main == "Clouds") {
+                weathericon.src = "./assets/clouds.png";
+            }
+            else if (data.weather[0].main == "Clear") {
+                weathericon.src = "./assets/clouds";
+            }
+            else if (data.weather[0].main == "Rain") {
+                weathericon.src = "./assets/rainy.png";
+            }
+        }
+
+        searchBtn.addEventListener("click", () => {
+            checkWeather(searchBox.value);
+        });
+        // date and time
+        const getCurrentDay = () => {
+            const weekday = ["Sunday", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            const currentTime = new Date();
+            return weekday[currentTime.getDay()];
+        };
+
+        const getCurrentTime = () => {
+            const months = [
+                "Jan", "Feb", "March", "April", "May", "June", "July", "August", "Sep",
+                "Oct", "Nov", "Dec"
+            ];
+            const now = new Date();
+            const month = months[now.getMonth()]; // No need to add 1
+            const day = now.getDate();
+
+            let hours = now.getHours();
+            let mins = now.getMinutes();
+            let period = "AM";
+
+            if (hours > 11) {
+                period = "PM";
+                if (hours > 12) hours -= 12;
+            }
+            if (mins < 10) {
+                mins = "0" + mins;
+            }
+            return `${month} ${day} | ${hours}:${mins} ${period}`;
+        };
+
+        curDate.innerHTML = `${getCurrentDay()} | ${getCurrentTime()}`;
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Captcha</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="password"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        .captcha {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Login Form with Captcha</h2>
+    <div class="container">
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <div class="captcha" id="captchaCode">Loading...</div>
+            <button type="button" onclick="generateCaptcha()">Refresh Captcha</button>
+            <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
+            <button type="button" onclick="validateLogin()">Login</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let captcha;
+
+        function generateCaptcha() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            document.getElementById('captchaCode').innerText = captcha;
+        }
+
+        function validateLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const captchaInput = document.getElementById('captchaInput').value;
+            const result = document.getElementById('result');
+
+            if (username === '' || password === '') {
+                result.innerText = 'Please fill out all fields.';
+                result.className = 'error';
+            } else if (captchaInput !== captcha) {
+                result.innerText = 'Captcha Incorrect. Please try again.';
+                result.className = 'error';
+            } else {
+                result.innerText = 'Login Successful!';
+                result.className = 'success';
+            }
+        }
+
+        // Initial captcha generation
+        window.onload = generateCaptcha;
+    </script>
+</body>
+
+</html>
