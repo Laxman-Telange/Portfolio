@@ -671,17 +671,7 @@ h3.my-profession{
     gap: 20px;
 }
 
-/* .portfolio-item {
-    text-align: center;
-    padding: 20px;
-    width: 200px;
-    background: #f3f3f3;
-    border-radius: 10px;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    transition: 0.3s;
-} */
+
 
 .portfolio-item-html{
     width: 100%;
@@ -763,7 +753,8 @@ h3.my-profession{
     .about .about-content .experience,
     .about .about-content .education,
     .about .about-content .skills,
-    .about .about-content .personal-info{
+    .about .about-content .personal-info,
+    .form-item, .form-group .btn{
         flex: 0 0 100%;
         max-width: 100%;
     }
