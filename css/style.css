@@ -754,14 +754,8 @@ h3.my-profession{
     .about .about-content .education,
     .about .about-content .skills,
     .about .about-content .personal-info,
-    .form-item, .form-group .btn{
+    .form-item .form-group .btn{
         flex: 0 0 100%;
         max-width: 100%;
-    }
-}
-@media (max-width:800px){
-   .contact .contact-info-item .btn {
-        flex: 0 0 50%;
-        max-width: 50%;
     }
 }
