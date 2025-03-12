@@ -6,256 +6,209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
-        .portfolio .container {
-            padding-bottom: 40px;
+        :root {
+            --text-black-900: #000;
+            --bg-black-100: #f4f4f4;
+            --bg-black-900: #222;
+            --skin-color: #ff4a57;
         }
 
-        .portfolio .portfolio-heading {
-            flex: 0 0 100%;
-            max-width: 100%;
-            margin-bottom: 40px;
-        }
-
-        .portfolio .portfolio-heading h2 {
-            color: var(--text-black-900);
-            font-weight: 500;
-        }
-
-        .portfolio .portfolio-item {
-            flex: 0 0 25%;
-            max-width: 100%;
-            padding-bottom: 70px;
-            margin: auto;
-        }
-
-        .portfolio .portfolio-item a {
-            text-decoration: none;
-            display: block;
-        }
-
-        .portfolio .portfolio-item {
-            flex: 0 0 25%;
-            max-width: 100%;
-            padding-bottom: 70px;
-            margin: auto;
-
-        }
-
-        .portfolio .portfolio-item-inner {
-            border: 6px solid var(--bg-black-100);
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.7s ease-in-out, box-shadow 0.3s ease-in-out;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.9);
-
-            /* Box Shadow Added */
-        }
-
-        .portfolio .portfolio-item-inner:hover {
-            transform: scale(1.09);
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-            /* Stronger Shadow on Hover */
-        }
-
-
-        .portfolio .portfolio-item-inner .portfolio-img img {
-            width: 100%;
-            height: 200px;
-            display: block;
-        }
-
-        .portfolio .portfolio-item-inner h4 {
-            text-align: center;
-            color: var(--text-black-900);
-            padding: 10px 0;
-            font-size: 20px;
-
-        }
-
-        .section {
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
             background: var(--bg-black-900);
-            min-height: 100vh;
-            padding: 0 20px;
-
-        }
-
-        .main-content {
-            padding-left: 270px;
-        }
-
-        .pad-15 {
-            padding-left: 15px;
-            padding-right: 15px;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
             max-width: 1200px;
             width: 90%;
             margin: auto;
+            padding: 20px;
         }
 
-        .section .container {
-            padding-top: 10px;
-            padding-bottom: 50px;
+        .section {
+            min-height: 100vh;
+            padding: 20px 0;
         }
 
         .section-title {
-            flex: 0 0 100%;
-            max-width: 100%;
-            margin-bottom: 20px;
-
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         .section-title h2 {
-            font-size: 40px;
-            color: var(--text-black-900);
+            font-size: 35px;
+            color: white;
             font-weight: 700;
             position: relative;
-            text-align: center;
         }
 
-        .section-title h2::before {
-            content: '';
-            height: 4px;
-            width: 40px;
-            background-color: var(--skin-color);
-            position: absolute;
-            top: 100%;
-            left: 0;
-        }
-
-        .section-title h2::after {
-            content: '';
-            height: 4px;
-            width: 25px;
-            background-color: var(--skin-color);
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 8px;
-        }
-
+        /* Grid Layout */
         .row {
             display: flex;
             flex-wrap: wrap;
-            margin-left: -15px;
-            margin-right: -15px;
+            justify-content: center;
+            gap: 20px;
         }
- /* Responsive Design */
-@media (max-width: 1024px) {
-    .portfolio-item {
-        flex: 1 1 45%;
-        max-width: 45%;
-    }
-}
 
-@media (max-width: 768px) {
-    .portfolio-item {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
-}
-     
-      
-        
+        /* Portfolio Items */
+        .portfolio-item {
+            flex: 1 1 calc(33.333% - 20px); /* 3 items per row */
+            max-width: calc(33.333% - 20px);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+
+        .portfolio-item-inner {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        .portfolio-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-item-inner h4 {
+            color: var(--text-black-900);
+            font-size: 20px;
+            padding: 10px 0;
+        }
+
+        /* GitHub Button */
+        .section-title a {
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .section-title button {
+            background: var(--skin-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .section-title button:hover {
+            background: #d93b4a;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .portfolio-item {
+                flex: 1 1 calc(50% - 20px); /* 2 items per row */
+                max-width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-item {
+                flex: 1 1 100%; /* 1 item per row */
+                max-width: 100%;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <section class="portfolio section" id="portfolio">
         <div class="container">
-            <div class="row">
-                <div class="section-title pad-15">
-                    <h2>My Projects</h2>
-                    <a href="https://github.com/Laxman-Telange/Portfolio/tree/main/pages/Javascript" >
-                        <button>Visit My JavaScript Repository</button>
-                            </a>
-                </div>
+            <div class="section-title">
+                <h2>My Projects</h2>
+                <a href="https://github.com/Laxman-Telange/Portfolio/tree/main/pages/Javascript">
+                    <button>Visit My JavaScript Repository</button>
+                </a>
             </div>
+
             <div class="row">
-                <!-- Weather app Project -->
-                <div class="portfolio-item pad-15"
-                   onclick="window.open('https://effervescent-pavlova-7dd398.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <!-- Weather App -->
+                <div class="portfolio-item" onclick="window.open('https://effervescent-pavlova-7dd398.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
                             <img src="weather.jpg" alt="Weather App">
                         </div>
-                        <h4>weather-app</h4>
+                        <h4>Weather App</h4>
                     </div>
                 </div>
 
-                <!-- Bar Code Generator Project -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://cozy-otter-10b53c.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <!-- Barcode Generator -->
+                <div class="portfolio-item" onclick="window.open('https://cozy-otter-10b53c.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
-                            <img src="bar.jpg" alt="HTML & CSS Project">
+                            <img src="bar.jpg" alt="Barcode Generator">
                         </div>
-                        <h4>Bar Code Generator</h4>
+                        <h4>Barcode Generator</h4>
                     </div>
-                    
                 </div>
 
-                <!--Captcha Generator -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://friendly-twilight-575afe.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <!-- Captcha Generator -->
+                <div class="portfolio-item" onclick="window.open('https://friendly-twilight-575afe.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
-                            <img src="captcha-removebg-preview.png" alt="Bootstrap Project">
+                            <img src="captcha-removebg-preview.png" alt="Captcha Generator">
                         </div>
                         <h4>Captcha Generator</h4>
                     </div>
-                    
                 </div>
 
-                <!-- Image to pdf -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://vermillion-maamoul-e384a5.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <!-- Image to PDF -->
+                <div class="portfolio-item" onclick="window.open('https://vermillion-maamoul-e384a5.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
-                            <img src="pdf.jpg" alt="ReactJS Project">
+                            <img src="pdf.jpg" alt="Image to PDF">
                         </div>
-                        <h4>Image To Pdf</h4>
+                        <h4>Image to PDF</h4>
                     </div>
-                    
                 </div>
 
-                <!-- stopwatch -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://melodious-churros-c6e3bf.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <!-- Stopwatch -->
+                <div class="portfolio-item" onclick="window.open('https://melodious-churros-c6e3bf.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
-                            <img src="stop.jpg" alt="StopWatch">
+                            <img src="stop.jpg" alt="Stopwatch">
                         </div>
-                        <h4>StopWatch</h4>
+                        <h4>Stopwatch</h4>
                     </div>
-                    
                 </div>
 
-                <!-- Text to voice -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://ornate-lebkuchen-acacd3.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <!-- Text to Voice -->
+                <div class="portfolio-item" onclick="window.open('https://ornate-lebkuchen-acacd3.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
-                            <img src="textvoice.jpg" alt="CSS Project">
+                            <img src="textvoice.jpg" alt="Text to Voice">
                         </div>
-                        <h4>Text to voice</h4>
+                        <h4>Text to Voice</h4>
                     </div>
-                    
-                </div>
-                <!-- Text to voice -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://moonlit-mochi-7c1128.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
-                        <div class="portfolio-img">
-                            <img src="todo.jpg" alt="To do">
-                        </div>
-                        <h4>To Do List</h4>
-                    </div>
-                
                 </div>
 
+                <!-- To-Do List -->
+                <div class="portfolio-item" onclick="window.open('https://moonlit-mochi-7c1128.netlify.app/')">
+                    <div class="portfolio-item-inner">
+                        <div class="portfolio-img">
+                            <img src="todo.jpg" alt="To-Do List">
+                        </div>
+                        <h4>To-Do List</h4>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
