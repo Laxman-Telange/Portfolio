@@ -54,78 +54,64 @@
         }
 
         /* Portfolio Items */
-        .portfolio-item {
-            flex: 1 1 calc(33.333% - 20px); /* 3 items per row */
-            max-width: calc(33.333% - 20px);
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .portfolio-item:hover {
-            transform: scale(1.05);
-        }
-
-        .portfolio-item-inner {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            padding-bottom: 15px;
-        }
-
+.portfolio-item {
+    flex: 1 1 calc(33.333% - 20px); /* 3 items per row */
+    max-width: calc(33.333% - 20px);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+/* Portfolio Item Inner */
+.portfolio-item-inner {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+/* Image Container */
+.portfolio-img {
+    width: 100%;
+    height: 200px; /* Set a fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
         .portfolio-img img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures images fit without distortion */
+}
+/* Portfolio Item Text */
+.portfolio-item-inner h4 {
+    color: var(--text-black-900);
+    font-size: 18px;
+    padding: 10px;
+    margin: 0;
+}
 
-        .portfolio-item-inner h4 {
-            color: var(--text-black-900);
-            font-size: 20px;
-            padding: 10px 0;
-        }
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .portfolio-item {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
 
-        /* GitHub Button */
-        .section-title a {
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-        }
+@media (max-width: 768px) {
+    .portfolio-item {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
 
-        .section-title button {
-            background: var(--skin-color);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .section-title button:hover {
-            background: #d93b4a;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .portfolio-item {
-                flex: 1 1 calc(50% - 20px); /* 2 items per row */
-                max-width: calc(50% - 20px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .portfolio-item {
-                flex: 1 1 100%; /* 1 item per row */
-                max-width: 100%;
-            }
-
-            .section-title h2 {
-                font-size: 28px;
-            }
-        }
+    .section-title h2 {
+        font-size: 28px;
+    }
+}
     </style>
 </head>
 
