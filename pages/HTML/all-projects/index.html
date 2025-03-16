@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         .portfolio .container {
             padding-bottom: 40px;
         }
@@ -19,26 +25,14 @@
         .portfolio .portfolio-heading h2 {
             color: var(--text-black-900);
             font-weight: 500;
+            text-align: center;
         }
 
         .portfolio .portfolio-item {
-            flex: 0 0 25%;
-            max-width: 100%;
-            padding-bottom: 70px;
-            margin: auto;
-        }
-
-        .portfolio .portfolio-item a {
-            text-decoration: none;
-            display: block;
-        }
-
-        .portfolio .portfolio-item {
-            flex: 0 0 25%;
-            max-width: 100%;
-            padding-bottom: 70px;
-            margin: auto;
-
+            flex: 1 1 calc(33.33% - 30px);
+            max-width: calc(33.33% - 30px);
+            padding-bottom: 30px;
+            margin: 15px;
         }
 
         .portfolio .portfolio-item-inner {
@@ -46,47 +40,32 @@
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.7s ease-in-out, box-shadow 0.3s ease-in-out;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.9);
-
-            /* Box Shadow Added */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .portfolio .portfolio-item-inner:hover {
-            transform: scale(1.09);
+            transform: scale(1.05);
             box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-            /* Stronger Shadow on Hover */
         }
-
 
         .portfolio .portfolio-item-inner .portfolio-img img {
             width: 100%;
             height: 200px;
-            display: block;
+            object-fit: cover;
         }
 
         .portfolio .portfolio-item-inner h4 {
             text-align: center;
             color: var(--text-black-900);
             padding: 10px 0;
-            font-size: 20px;
-
+            font-size: 18px;
         }
 
         .section {
             background: var(--bg-black-900);
             min-height: 100vh;
-            padding: 0 20px;
-
-        }
-
-        .main-content {
-            padding-left: 270px;
-        }
-
-        .pad-15 {
-            padding-left: 15px;
-            padding-right: 15px;
+            padding: 20px;
         }
 
         .container {
@@ -95,52 +74,53 @@
             margin: auto;
         }
 
-        .section .container {
-            padding-top: 10px;
-            padding-bottom: 50px;
-        }
-
         .section-title {
-            flex: 0 0 100%;
-            max-width: 100%;
+            text-align: center;
             margin-bottom: 20px;
-
         }
 
         .section-title h2 {
             font-size: 40px;
             color: var(--text-black-900);
             font-weight: 700;
-            position: relative;
-            text-align: center;
-        }
-
-        .section-title h2::before {
-            content: '';
-            height: 4px;
-            width: 40px;
-            background-color: var(--skin-color);
-            position: absolute;
-            top: 100%;
-            left: 0;
-        }
-
-        .section-title h2::after {
-            content: '';
-            height: 4px;
-            width: 25px;
-            background-color: var(--skin-color);
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 8px;
         }
 
         .row {
             display: flex;
             flex-wrap: wrap;
-            margin-left: -15px;
-            margin-right: -15px;
+            justify-content: center;
+        }
+
+        .repo-btn {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: var(--skin-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .repo-btn:hover {
+            background: #ff7b00;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .portfolio .portfolio-item {
+                flex: 1 1 calc(50% - 30px);
+                max-width: calc(50% - 30px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio .portfolio-item {
+                flex: 1 1 calc(100% - 30px);
+                max-width: calc(100% - 30px);
+            }
         }
     </style>
 </head>
@@ -151,92 +131,74 @@
             <div class="row">
                 <div class="section-title pad-15">
                     <h2>My Projects</h2>
+                    <a href="https://github.com/Laxman-Telange/Portfolio/tree/main/pages/Javascript">
+                        <button class="repo-btn">Visit My HTML Repository</button>
+                    </a>
                 </div>
             </div>
             <div class="row">
-                <!-- Weather app Project -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://calm-basbousa-dcf0b8.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-item" onclick="window.open('https://calm-basbousa-dcf0b8.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
-                            <img src="./calci.jpg" alt="Weather App">
+                            <img src="./calci.jpg" alt="Calculator">
                         </div>
                         <h4>Calculator</h4>
                     </div>
-                    </a>
                 </div>
 
-                <!-- Bar Code Generator Project -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://subtle-kheer-2a3c39.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-item" onclick="window.open('https://subtle-kheer-2a3c39.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
-                            <img src="./clock.jpg" alt="HTML & CSS Project">
+                            <img src="./clock.jpg" alt="Digital Clock">
                         </div>
                         <h4>Digital Clock</h4>
                     </div>
-                    </a>
                 </div>
 
-                <!--Quiz App -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://cosmic-haupia-8fd573.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-item" onclick="window.open('https://cosmic-haupia-8fd573.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
                             <img src="quiz.jpg" alt="Quiz App">
                         </div>
                         <h4>Quiz App</h4>
                     </div>
-                    </a>
                 </div>
 
-                <!-- Resume -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://bright-donut-6797e6.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-item" onclick="window.open('https://bright-donut-6797e6.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
                             <img src="resume.jpg" alt="Resume">
                         </div>
                         <h4>Resume</h4>
                     </div>
-                    </a>
                 </div>
 
-                <!-- Music Player -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://singular-tarsier-498269.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-item" onclick="window.open('https://singular-tarsier-498269.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
-                            <img src="music.jpg" alt="StopWatch">
+                            <img src="music.jpg" alt="Music Player">
                         </div>
                         <h4>Music Player</h4>
                     </div>
-                    </a>
                 </div>
 
-                <!-- Drag and Drop  -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://tubular-chaja-9054fa.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+                <div class="portfolio-item" onclick="window.open('https://tubular-chaja-9054fa.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
-                            <img src="upload.jpg" alt="drag and drop">
+                            <img src="upload.jpg" alt="Drag & Drop File">
                         </div>
                         <h4>Drag & Drop File</h4>
                     </div>
-                    </a>
                 </div>
-                <!-- Job Portal -->
-                <div class="portfolio-item pad-15"
-                    onclick="window.open('https://joyful-centaur-7d5189.netlify.app/')">
-                    <div class="portfolio-item-inner shadow-dark">
+
+                <div class="portfolio-item" onclick="window.open('https://joyful-centaur-7d5189.netlify.app/')">
+                    <div class="portfolio-item-inner">
                         <div class="portfolio-img">
-                            <img src="jobs.jpg" alt="To do">
+                            <img src="jobs.jpg" alt="Job Application Form">
                         </div>
                         <h4>Job Application Form</h4>
                     </div>
-                    </a>
                 </div>
-
             </div>
         </div>
     </section>
