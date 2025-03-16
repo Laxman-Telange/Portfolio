@@ -6,113 +6,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
-        :root {
-            --text-black-900: #000;
-            --bg-black-100: #f4f4f4;
-            --bg-black-900: #222;
-            --skin-color: #ff4a57;
-        }
-
-        /* General Styling */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            width: 90%;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .section {
-            min-height: 100vh;
-            padding: 20px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .section-title h2 {
-            font-size: 35px;
-            font-weight: 700;
-            
-        }
-
-        /* Grid Layout */
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            width:100%;
-        }
-
-        /* Portfolio Items */
-.row .portfolio-item {
-    flex:0 0 33.33%; /* Ensures 3 cards per row on larger screens */
-    max-width: 100%;
-    margin-bottom: 20px;  /* Bottom margin to give space between rows */
-
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 0;
 }
-/* Portfolio Item Inner */
-.portfolio-item-inner {
-    border: 6px solid var(--bg-black-100);
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+    padding: 50px 0;
+}
+
+/* Section Title */
+.section-title h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Repository Button */
+.repo-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.repo-btn:hover {
+    background: #0056b3;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Portfolio Item */
+.portfolio-item {
+    background: white;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.9);
+    transition: 0.3s;
+}
 
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
-/* Image Container */
-.portfolio-img {
+
+/* Portfolio Item Inner */
+.portfolio-item-inner {
+    padding: 15px;
+    text-align: center;
+}
+
+.portfolio-item img {
     width: 100%;
-    height: 70%; /* Set a fixed height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
 }
-    .portfolio-img img {
-    width: 100%;
-    height:70%;
-    object-fit:cover;
-    aspect-ratio:1/2;
-        
-/
-    
-}
-/* Portfolio Item Text */
-.portfolio-item-inner h4 {
-    color: var(--text-black-900);
+
+/* Project Title */
+.portfolio-item h4 {
+    margin-top: 10px;
     font-size: 18px;
-    padding: 20px;
-    margin: 0;
+    color: #333;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-    .portfolio-item {
-        flex: 1 1 calc(50% - 20px);
-        max-width: calc(50% - 20px);
-    }
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
-    .portfolio-item {
-        flex: 1 1 100%;
-        max-width: 100%;
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
-
-    .section-title h2 {
-        font-size: 28px;
+    .repo-btn {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
     }
 }
+
+@media (max-width: 480px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    .section-title h2 {
+        font-size: 1.5em;
+    }
+    .portfolio-item img {
+        height: 160px;
+    }
+    .repo-btn {
+        font-size: 14px;
+    }
+}
+
     </style>
 </head>
 
@@ -122,77 +126,56 @@
             <div class="section-title">
                 <h2>My Projects</h2>
                 <a href="https://github.com/Laxman-Telange/Portfolio/tree/main/pages/Javascript">
-                    <button>Visit My JavaScript Repository</button>
+                    <button class="repo-btn">Visit My JavaScript Repository</button>
                 </a>
             </div>
 
-            <div class="row">
-                <!-- Weather App -->
+            <div class="portfolio-grid">
                 <div class="portfolio-item" onclick="window.open('https://effervescent-pavlova-7dd398.netlify.app/')">
                     <div class="portfolio-item-inner">
-                        <div class="portfolio-img">
-                            <img src="weather.jpg" alt="Weather App">
-                        </div>
+                        <img src="weather.jpg" alt="Weather App">
                         <h4>Weather App</h4>
                     </div>
                 </div>
 
-                <!-- Barcode Generator -->
                 <div class="portfolio-item" onclick="window.open('https://cozy-otter-10b53c.netlify.app/')">
                     <div class="portfolio-item-inner">
-                        <div class="portfolio-img">
-                            <img src="bar.jpg" alt="Barcode Generator">
-                        </div>
+                        <img src="bar.jpg" alt="Barcode Generator">
                         <h4>Barcode Generator</h4>
                     </div>
                 </div>
 
-                <!-- Captcha Generator -->
                 <div class="portfolio-item" onclick="window.open('https://friendly-twilight-575afe.netlify.app/')">
                     <div class="portfolio-item-inner">
-                        <div class="portfolio-img">
-                            <img src="captcha-removebg-preview.png" alt="Captcha Generator">
-                        </div>
+                        <img src="captcha-removebg-preview.png" alt="Captcha Generator">
                         <h4>Captcha Generator</h4>
                     </div>
                 </div>
 
-                <!-- Image to PDF -->
                 <div class="portfolio-item" onclick="window.open('https://vermillion-maamoul-e384a5.netlify.app/')">
                     <div class="portfolio-item-inner">
-                        <div class="portfolio-img">
-                            <img src="pdf.jpg" alt="Image to PDF">
-                        </div>
+                        <img src="pdf.jpg" alt="Image to PDF">
                         <h4>Image to PDF</h4>
                     </div>
                 </div>
 
-                <!-- Stopwatch -->
                 <div class="portfolio-item" onclick="window.open('https://melodious-churros-c6e3bf.netlify.app/')">
                     <div class="portfolio-item-inner">
-                        <div class="portfolio-img">
-                            <img src="stop.jpg" alt="Stopwatch">
-                        </div>
+                        <img src="stop.jpg" alt="Stopwatch">
                         <h4>Stopwatch</h4>
                     </div>
                 </div>
 
-                <!-- Text to Voice -->
                 <div class="portfolio-item" onclick="window.open('https://ornate-lebkuchen-acacd3.netlify.app/')">
                     <div class="portfolio-item-inner">
-                        <div class="portfolio-img">
-                            <img src="textvoice.jpg" alt="Text to Voice">
-                        </div>
+                        <img src="textvoice.jpg" alt="Text to Voice">
                         <h4>Text to Voice</h4>
                     </div>
                 </div>
 
-                <!-- To-Do List -->
                 <div class="portfolio-item" onclick="window.open('https://moonlit-mochi-7c1128.netlify.app/')">
                     <div class="portfolio-item-inner">
-                        <div class="portfolio-img">
-                            <img src="todo.jpg" alt="To-Do List">
-                        </div>
+                        <img src="todo.jpg" alt="To-Do List">
                         <h4>To-Do List</h4>
                     </div>
                 </div>
