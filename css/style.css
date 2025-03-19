@@ -121,7 +121,7 @@ ul{
 /* Aside */
 .aside{
     width: 270px;
-    background: #399918;
+    background:var(--bg-black-900);
     position: fixed;
     height: 100%;
     left: 0;
@@ -192,13 +192,13 @@ ul{
     font-size: 16px;
     font-weight: 600;
     display: block;
-    color: white;
+    color: var(--text-black-900);
     padding: 5px 15px;
     border-bottom: 1px solid var(--bg-black-50);
 }
-.aside .nav li a.active{
-    color: black;
-}
+/* .aside .nav li a.active{
+    
+} */
 .aside .nav li a i{
     margin-right: 15px;
 }
@@ -218,7 +218,7 @@ ul{
 .circle:nth-child(2){
     
     width: 17rem;
-    background-image: url("../images/laxman-pic.jpg");
+    background-image: url("../images/laxman-pic.png");
     background-size:100%;
     background-repeat: no-repeat;
     object-fit:cover;
